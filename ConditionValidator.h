@@ -6,14 +6,13 @@
 
 using namespace std;
 class ConditionValidator : public Validator {
-	string error;
+    string error;
+
 public:
-	bool validate(string value) override;
+    bool validate(string value) override;
 
 private:
-	bool isSimpleCondition(string value);
+    bool isSimpleCondition(string value);
 };
-
-
 
 #endif

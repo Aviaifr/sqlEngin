@@ -6,15 +6,14 @@
 
 using namespace std;
 class IntValidator : public Validator {
-	string error;
+    string error;
+
 public:
-	bool validate(string value) override;
+    bool validate(string value) override;
 
 private:
-	bool isNumeric(string value);
-	bool isDigit(char ch);
+    bool isNumeric(string value);
+    bool isDigit(char ch);
 };
-
-
 
 #endif

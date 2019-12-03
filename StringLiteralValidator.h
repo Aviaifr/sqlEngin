@@ -6,15 +6,14 @@
 
 using namespace std;
 class StringLiteralValidator : public Validator {
-	string error;
+    string error;
+
 public:
-	bool validate(string value) override;
+    bool validate(string value) override;
 
 private:
-	bool isStringLiteral(string value);
-	bool isValidChar(char ch);
+    bool isStringLiteral(string value);
+    bool isValidChar(char ch);
 };
-
-
 
 #endif

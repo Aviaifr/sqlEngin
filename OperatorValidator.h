@@ -6,14 +6,13 @@
 
 using namespace std;
 class OperatorValidator : public Validator {
-	string error;
+    string error;
+
 public:
-	bool validate(string value) override;
+    bool validate(string value) override;
 
 private:
-	bool isOperator(string value);
+    bool isOperator(string value);
 };
-
-
 
 #endif
