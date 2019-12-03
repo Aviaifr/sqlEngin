@@ -1,19 +1,18 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
-#include "OperatorValidator.h"
+#include "ConditionValidator.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    string a = " avihai      is     awesome  a a  s   0";
-    cout << "Started" << endl;
+    string a = "     (\"<\">=12) ";
     string error;
-    OperatorValidator v;
+    ConditionValidator v;
     if (!v.validate(a)) {
-        cout << v.getError();
+        cout << v.getError() << endl;
     } else {
-        cout << "all good";
+        cout << "all good" << endl;
     }
     return 0;
 }

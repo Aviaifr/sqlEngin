@@ -13,8 +13,9 @@ bool StringLiteralValidator::isStringLiteral(string value) {
 
 bool StringLiteralValidator::validate(string value) {
     bool res;
+    trim(value);
     if (value.at(0) != '"' || value.at(value.length() - 1) != '"') {
-        setError("string literal not starting or not endint with \"");
+        setError("string literal not starting or not ending with \"");
         return false;
     }
 

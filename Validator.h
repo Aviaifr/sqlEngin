@@ -1,5 +1,5 @@
-#ifndef _IVALIDATOR_H_
-#define _IVALIDATOR_H_
+#ifndef _VALIDATOR_H_
+#define _VALIDATOR_H_
 
 #include <string>
 using namespace std;

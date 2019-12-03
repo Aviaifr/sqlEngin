@@ -12,7 +12,10 @@ public:
     bool validate(string value) override;
 
 private:
-    bool isSimpleCondition(string value);
+    bool isSimpleCondition(string value, size_t startIndex);
+    bool isComplexCondition(string value);
+    bool isCondition(string value);
+    bool isBracketsCondition(string value);
 };
 
 #endif
