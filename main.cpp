@@ -2,16 +2,16 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "FieldValidator.h"
+#include "FieldListValidator.h"
 #include "Scheme.h"
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
     Scheme s("scheme.txt");
-    FieldValidator v(&s);
+    FieldListValidator v(&s);
 
-    string a = "Name";
+    string a = "Name ,";
     // string error;
     // ConditionValidator v;
     if (!v.validate(a)) {
