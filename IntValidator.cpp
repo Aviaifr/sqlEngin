@@ -6,7 +6,7 @@ bool IntValidator::isDigit(char digit) {
 
 bool IntValidator::isNumeric(string value) {
     trim(value);
-    if (value.size() == 0) {
+    if (value.length() == 0) {
         return true;
     }
     bool res = isDigit(value.at(0));

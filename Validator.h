@@ -14,6 +14,7 @@ protected:
     void trim(string &strToTrim);
     void removeDoubleSpaces(string &strToClean);
     void setError(string e);
+    string stringToUpper(string str);
 };
 
 #endif

@@ -6,7 +6,10 @@
 
 bool ConditionValidator::isCondition(string value) {
     trim(value);
-    bool res = isSimpleCondition(value, 0) || isBracketsCondition(value);
+    bool res = isSimpleCondition(value, 0) ||
+               isBracketsCondition(value) ||
+               isComplexCondition(value, "AND") ||
+               isComplexCondition(value, "OR");
     if (!res) {
         setError(value + " not a vaild condition");
     } else {
@@ -15,24 +18,26 @@ bool ConditionValidator::isCondition(string value) {
     return res;
 }
 
-bool ConditionValidator::isComplexCondition(string value) {
-    size_t logicOpLoc;
-    size_t logicOpSize = 0;
-    if ((logicOpLoc = value.find("AND")) != string::npos) {
-        logicOpSize = 3;
-        //return isCondition() && isCondition()
-    } else if ((logicOpLoc = value.find("AND")) != string::npos) {
-        logicOpSize = 2;
+bool ConditionValidator::isComplexCondition(string value, string logicOp) {
+    size_t logicOpLoc = 0, logicOpSize = logicOp.length(), startingIndex = 0;
+    string upperCaseValue = stringToUpper(value);
+    bool foundGoodCondition = false;
+    while ((logicOpLoc = upperCaseValue.find(logicOp, startingIndex)) != string::npos && !foundGoodCondition) {
+        startingIndex = logicOpLoc + 1;
+        string left = value.substr(0, logicOpLoc);
+        string right = value.substr(logicOpLoc + logicOpSize, value.length() - (logicOpLoc + logicOpSize));
+        foundGoodCondition = isCondition(left) && isCondition(right);
     }
-    if (logicOpSize) {
-        //return isCondition() && isCondition();
-    }
-    return false;
+
+    return foundGoodCondition;
 }
 
 bool ConditionValidator::isSimpleCondition(string value, size_t startingIndex) {
     if (!startingIndex) {
         trim(value);
+    }
+    if (startingIndex == value.size()) {
+        return false;
     }
     if (value.at(startingIndex) == '"') {
         return isSimpleCondition(value, 1);

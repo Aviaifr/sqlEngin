@@ -1,9 +1,9 @@
 #include "OperatorValidator.h"
 
 bool OperatorValidator::isOperator(string value) {
-    if (value.size() == 1) {
+    if (value.length() == 1) {
         return value.compare("=") == 0 || value.compare("<") == 0 || value.compare(">") == 0;
-    } else if (value.size() == 2) {
+    } else if (value.length() == 2) {
         return value.compare("<>") == 0 || value.compare("<=") == 0 || value.compare(">=") == 0;
     }
     return false;

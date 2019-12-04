@@ -4,7 +4,7 @@ bool StringLiteralValidator::isValidChar(char ch) {
 }
 
 bool StringLiteralValidator::isStringLiteral(string value) {
-    if (value.size() == 0) {
+    if (value.length() == 0) {
         return true;
     }
 
@@ -14,7 +14,7 @@ bool StringLiteralValidator::isStringLiteral(string value) {
 bool StringLiteralValidator::validate(string value) {
     bool res;
     trim(value);
-    if (value.at(0) != '"' || value.at(value.length() - 1) != '"') {
+    if (value.size() < 2 || value.at(0) != '"' || value.at(value.length() - 1) != '"') {
         setError("string literal not starting or not ending with \"");
         return false;
     }

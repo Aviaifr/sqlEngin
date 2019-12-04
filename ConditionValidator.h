@@ -13,7 +13,7 @@ public:
 
 private:
     bool isSimpleCondition(string value, size_t startIndex);
-    bool isComplexCondition(string value);
+    bool isComplexCondition(string value, string logicOp);
     bool isCondition(string value);
     bool isBracketsCondition(string value);
 };
