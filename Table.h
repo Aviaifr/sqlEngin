@@ -13,10 +13,10 @@ struct Table {
 
 public:
     Table(string tableString);
+    Property* getProperty(string propName);
 
 private:
     void addProperty(string propString);
-    Property* getProperty(string propName);
 };
 
 #endif

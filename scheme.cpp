@@ -10,7 +10,9 @@ Scheme::Scheme(string fileName) {
         }
         Table* newTable = new Table(tableString);
         newArray[tableSize] = newTable;
-        delete[] tables;
+        if (tableSize) {
+            delete[] tables;
+        }
         tables = newArray;
         tableSize++;
     }

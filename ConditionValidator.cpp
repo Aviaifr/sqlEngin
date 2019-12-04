@@ -4,6 +4,10 @@
 #include "OperatorValidator.h"
 #include "StringLiteralValidator.h"
 
+ConditionValidator::ConditionValidator(Scheme* s) {
+    scheme = s;
+}
+
 bool ConditionValidator::isCondition(string value) {
     trim(value);
     bool res = isSimpleCondition(value, 0) ||
@@ -65,7 +69,7 @@ bool ConditionValidator::isSimpleCondition(string value, size_t startingIndex) {
         op = value.substr(opLoc, opSize);
         left = value.substr(opLoc + opSize, value.length() - (opLoc + opSize));
         IntValidator iv;
-        FieldValidator fv;
+        FieldValidator fv(scheme);
         StringLiteralValidator sv;
         OperatorValidator ov;
         bool aa = sv.validate(right);

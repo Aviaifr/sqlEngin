@@ -21,7 +21,9 @@ void Table::addProperty(string propString) {
     }
     Property* newProp = new Property(propString);
     newArray[propertiesSize] = newProp;
-    delete[] properties;
+    if (propertiesSize) {
+        delete[] properties;
+    }
     properties = newArray;
     propertiesSize++;
 }
