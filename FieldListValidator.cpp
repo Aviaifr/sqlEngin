@@ -8,22 +8,33 @@ FieldListValidator::FieldListValidator(Scheme* s) {
 
 bool FieldListValidator::isFieldList(string str) {
     trim(str);
-    if (str.size() == 0) {
-        return false;
-    }
     size_t commaLoc;
     if ((commaLoc = str.find(",")) == string::npos) {
         return fieldValidator->validate(str);
     }
-    return fieldValidator->validate(str.substr(0, commaLoc)) && isFieldList(str.substr(commaLoc + 1, str.size() - commaLoc));
+    if (commaLoc == 0) {
+        setError("Column list is empty");
+        return false;
+    }
+    string field = str.substr(0, commaLoc);
+    string fieldList = str.substr(commaLoc + 1, str.size() - commaLoc);
+    trim(fieldList);
+    if (fieldList.size() == 0) {
+        setError("Unexpected ',' in column list");
+        return false;
+    }
+    bool isfieldExist = fieldValidator->validate(field);
+    if (!isfieldExist) {
+        setError("Column '" + field + "' does not exist");
+        return false;
+    }
+    return isfieldExist && isFieldList(fieldList);
 }
 
 bool FieldListValidator::validate(string value) {
     trim(value);
-    bool res = isFieldList(value);
-    if (!res) {
-        setError("TODO UPDATE ERROR");
+    if (value.size() == 0) {
+        setError("Column list is empty");
     }
-
-    return res;
+    return isFieldList(value);
 }

@@ -20,6 +20,7 @@ private:
     bool isComplexCondition(string value, string logicOp);
     bool isCondition(string value);
     bool isBracketsCondition(string value);
+    bool validateSimpleCondition(string right, string left, string op);
 };
 
 #endif

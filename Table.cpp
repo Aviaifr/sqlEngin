@@ -36,3 +36,10 @@ Property* Table::getProperty(string propName) {
     }
     return nullptr;
 }
+
+Table::~Table() {
+    for (int i = 0; i < propertiesSize; i++) {
+        delete properties[i];
+    }
+    delete[] properties;
+}

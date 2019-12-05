@@ -14,6 +14,7 @@ struct Table {
 public:
     Table(string tableString);
     Property* getProperty(string propName);
+    ~Table();
 
 private:
     void addProperty(string propString);

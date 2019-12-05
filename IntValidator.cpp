@@ -1,7 +1,7 @@
 #include "IntValidator.h"
 
 bool IntValidator::isDigit(char digit) {
-    return digit < '9' && digit > '0';
+    return digit <= '9' && digit >= '0';
 }
 
 bool IntValidator::isNumeric(string value) {

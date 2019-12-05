@@ -21,7 +21,7 @@ bool FieldValidator::isField(string value) {
             bool existInCurrent = isPropertyExists(scheme->tables[i]->tName, value);
             if (existInCurrent) {
                 if (foundProp) {
-                    setError("Column '" + value + "' in where clause is ambiguous");
+                    setError("Column '" + value + "'  is ambiguous");
                     return false;
                 }
                 foundProp = existInCurrent;

@@ -15,6 +15,12 @@ struct Scheme {
 public:
     Scheme(string filename);
     Table* getTable(string tableName);
+    void filterTables(string tablesToKeep);
+    Property* getProperty(string propertyString);
+    ~Scheme();
+
+private:
+    void trim(string& strToTrim);
 };
 
 #endif

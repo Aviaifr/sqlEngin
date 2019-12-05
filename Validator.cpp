@@ -5,10 +5,10 @@ void Validator::trim(string &strToTrim) {
     if (strToTrim.length() == 0) {
         return;
     }
-    while (strToTrim.at(0) == ' ') {
+    while (strToTrim.size() && strToTrim.at(0) == ' ') {
         strToTrim = strToTrim.substr(1);
     }
-    while (strToTrim.at(strToTrim.length() - 1) == ' ') {
+    while (strToTrim.size() && strToTrim.at(strToTrim.length() - 1) == ' ') {
         strToTrim = strToTrim.substr(0, strToTrim.length() - 1);
     }
 }
