@@ -3,7 +3,7 @@
 bool FieldValidator::validate(string value) {
     bool found = isField(value);
     if (!found && getError().size() == 0) {
-        setError("'" + value + "' not a column in scheme");
+        setError("Column '" + value + "' not found in scheme");
     }
     return found;
 }
@@ -39,7 +39,7 @@ FieldValidator::FieldValidator(Scheme* s) {
 bool FieldValidator::isPropertyExists(string tableName, string PropName) {
     Table* t = scheme->getTable(tableName);
     if (!t) {
-        setError(tableName + " not a table in scheme");
+        setError("'" + tableName + "' not a table in scheme or not included in FROM clause");
         return false;
     }
     Property* p = t->getProperty(PropName);

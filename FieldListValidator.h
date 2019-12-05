@@ -20,6 +20,7 @@ public:
 
 private:
     bool isFieldList(string str);
+    bool isField(string str);
 };
 
 #endif

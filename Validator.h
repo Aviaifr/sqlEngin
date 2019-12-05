@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 class Validator {
-    string error;
+    string error = "";
 
 public:
     virtual bool validate(string value) = 0;

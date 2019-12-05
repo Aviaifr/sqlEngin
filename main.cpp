@@ -17,32 +17,45 @@ int printMenu() {
     return stoi(op);
 }
 
-void validateQuery(string queryString) {
+bool validateQuery(string queryString) {
     Scheme s("scheme.txt");
     QueryValidator v(&s);
-    if (queryString.at(0) != '#') {
-        cout << "validating query: " << queryString << endl;
-        if (!v.validate(queryString)) {
-            cout << "Query Validation: Error - " << v.getError() << endl
-                 << endl;
-        } else {
-            cout << "Query Validation: OK" << endl
-                 << endl;
-        }
+    bool success;
+    cout << "validating query: " << queryString << endl;
+    success = v.validate(queryString);
+    if (!success) {
+        cout << "Query Validation: Error - " << v.getError() << endl
+             << endl;
+    } else {
+        cout << "Query Validation: OK" << endl
+             << endl;
     }
+    return success;
 }
 
 void validateQueryFromFile(string fileName) {
     ifstream file(fileName);
     string queryString;
-    while (getline(file, queryString)) {
-        validateQuery(queryString);
+    size_t total = 0, countGood = 0;
+    if (!file) {
+        cout << "File not found" << endl;
+        return;
     }
+    cout << "----------Processing file " << fileName << " ----------" << endl
+         << endl;
+    while (getline(file, queryString)) {
+        if (queryString.at(0) != '#') {
+            total++;
+            if (validateQuery(queryString)) {
+                countGood++;
+            }
+        }
+    }
+    cout << "----------Processed " << total << " Queries, " << countGood << " Success, " << (total - countGood) << " Failed----------" << endl
+         << endl;
 }
 
 int main(int argc, char* argv[]) {
-    Scheme s("scheme.txt");
-    string queryString;
     int selection;
     do {
         selection = printMenu();

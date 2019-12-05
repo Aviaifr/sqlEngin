@@ -1,4 +1,4 @@
-SELECT Customers.Name FROM Customers WHERE Customers.Age=25;
+SELECT Customers.Name FROM Customers WHERE Customers.Age=25 AND Customers.Age=25 AND Customers.Age=25;
 SELECT Customers.Name FROM Customers WHERE Customers.Name="Mike";
 SELECT DISTINCT Customers.Name FROM Customers WHERE Customers.Age=25;
 SELECT Customers.Name,Orders.Price FROM Customers,Orders WHERE Customers.Name=Orders.CustomerName;
@@ -10,3 +10,7 @@ SELECT Customers.Name,Orders.Price FROM Customers,Orders WHERE (Customers.Name=O
 SELECT Customers.Name,Orders.Price FROM Customers,Orders WHERE (Customers.Name=Orders.CustomerName) OR (Orders.Price>1000;
 #2. column does not exist:
 SELECT Customers.Color,Orders.Price FROM Customers,Orders WHERE (Customers.Name=Orders.CustomerName) OR (Orders.Price>1000);
+#3. column does not in FROM tables:
+SELECT Customers.Name,Orders.Price FROM Customers WHERE (Customers.Name=Orders.CustomerName) OR (Orders.Price>1000);
+#4. Tables in from claues does not exist:
+SELECT Customers.Name,Order.Price FROM Customers, Order WHERE (Customers.Name=Orders.CustomerName) OR (Orders.Price>1000);

@@ -19,15 +19,20 @@ bool ConditionValidator::isCondition(string value) {
 bool ConditionValidator::isComplexCondition(string value, string logicOp) {
     size_t logicOpLoc = 0, logicOpSize = logicOp.length(), startingIndex = 0;
     string upperCaseValue = stringToUpper(value);
-    bool foundGoodCondition = false;
-    while ((logicOpLoc = upperCaseValue.find(logicOp, startingIndex)) != string::npos && !foundGoodCondition) {
+    while ((logicOpLoc = upperCaseValue.find(logicOp, startingIndex)) != string::npos) {
         startingIndex = logicOpLoc + 1;
         string left = value.substr(0, logicOpLoc);
         string right = value.substr(logicOpLoc + logicOpSize, value.length() - (logicOpLoc + logicOpSize));
-        foundGoodCondition = isCondition(left) && isCondition(right);
+        if (left.size() != 0 && right.size() != 0) {
+            bool isRightCon = isCondition(right);
+            bool isLeftCon = isCondition(left);
+            if (isRightCon && isLeftCon) {
+                return true;
+            }
+        }
     }
 
-    return foundGoodCondition;
+    return false;
 }
 
 bool ConditionValidator::isSimpleCondition(string value, size_t startingIndex) {
@@ -81,6 +86,9 @@ bool ConditionValidator::validateSimpleCondition(string right, string left, stri
     bool leftInt = iv.validate(left);
     bool leftField = fv.validate(left);
     bool isOp = ov.validate(op);
+    if (right.size() == 0 || left.size() == 0) {
+        return false;
+    }
     Property* rightProp = scheme->getProperty(right);
     Property* leftProp = scheme->getProperty(left);
     if (rightProp) {
@@ -127,7 +135,7 @@ bool ConditionValidator::isBracketsCondition(string value) {
 bool ConditionValidator::validate(string value) {
     bool res = isCondition(value);
     if (!res && getError().size() == 0) {
-        setError(value + " not a vaild condition");
+        setError("'" + value + "' not a vaild condition");
     }
     return res;
 }
