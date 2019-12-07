@@ -5,7 +5,7 @@ Scheme::Scheme(string fileName) {
     sName = fileName.substr(0, fileName.find("."));
     while (getline(file, tableString)) {
         Table** newArray = new Table*[tableSize + 1];
-        for (int index = 0; index < tableSize; index++) {
+        for (size_t index = 0; index < tableSize; index++) {
             newArray[index] = tables[index];
         }
         Table* newTable = new Table(tableString);
@@ -19,7 +19,7 @@ Scheme::Scheme(string fileName) {
 }
 
 Table* Scheme::getTable(string tableName) {
-    for (int i = 0; i < tableSize; i++) {
+	for (size_t i = 0; i < tableSize; i++) {
         if (tableName.compare(tables[i]->tName) == 0) {
             return tables[i];
         }
@@ -29,11 +29,11 @@ Table* Scheme::getTable(string tableName) {
 
 void Scheme::filterTables(string tablesToKeep) {
     size_t commaLoc, currentLoc = 0, tableCount = 0;
-    Table** filteredArray;
+    Table** filteredArray = nullptr;
     tablesToKeep = tablesToKeep + ",";
     while ((commaLoc = tablesToKeep.find(",", currentLoc)) != string::npos) {
         Table** newArray = new Table*[tableCount + 1];
-        for (int index = 0; index < tableCount; index++) {
+		for (size_t index = 0; index < tableCount; index++) {
             newArray[index] = filteredArray[index];
         }
         string tableString = tablesToKeep.substr(0 + currentLoc, commaLoc - currentLoc);
@@ -66,7 +66,6 @@ void Scheme::trim(string& strToTrim) {
 
 Property* Scheme::getProperty(string propertyString) {
     size_t pointLoc;
-    Table* tbl;
     if ((pointLoc = propertyString.find(".")) != string::npos) {
         string tblName = propertyString.substr(0, pointLoc);
         string propName = propertyString.substr(pointLoc + 1, propertyString.size() - pointLoc - 1);
@@ -76,7 +75,7 @@ Property* Scheme::getProperty(string propertyString) {
         }
         return tablePtr->getProperty(propName);
     } else {
-        for (int i = 0; i < tableSize; i++) {
+		for (size_t i = 0; i < tableSize; i++) {
             Property* prop = tables[i]->getProperty(propertyString);
             if (prop) {
                 return prop;
@@ -87,7 +86,7 @@ Property* Scheme::getProperty(string propertyString) {
 }
 
 Scheme::~Scheme() {
-    for (int i = 0; i < tableSize; i++) {
+	for (size_t i = 0; i < tableSize; i++) {
         delete tables[i];
     }
     delete[] tables;

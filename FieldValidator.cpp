@@ -17,7 +17,7 @@ bool FieldValidator::isField(string value) {
         string propName = value.substr(pointLoc + 1, value.size() - pointLoc - 1);
         foundProp = isPropertyExists(tblName, propName);
     } else {
-        for (int i = 0; i < scheme->tableSize; i++) {
+		for (size_t i = 0; i < scheme->tableSize; i++) {
             bool existInCurrent = isPropertyExists(scheme->tables[i]->tName, value);
             if (existInCurrent) {
                 if (foundProp) {

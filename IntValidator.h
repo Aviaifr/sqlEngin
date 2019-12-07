@@ -14,6 +14,7 @@ public:
 private:
     bool isNumeric(string value);
     bool isDigit(char ch);
+	bool IntValidator::isSignedNumeric(string value);
 };
 
 #endif

@@ -16,7 +16,7 @@ Table::Table(string tableString) {
 
 void Table::addProperty(string propString) {
     Property** newArray = new Property*[propertiesSize + 1];
-    for (int index = 0; index < propertiesSize; index++) {
+    for (size_t index = 0; index < propertiesSize; index++) {
         newArray[index] = properties[index];
     }
     Property* newProp = new Property(propString);
@@ -29,7 +29,7 @@ void Table::addProperty(string propString) {
 }
 
 Property* Table::getProperty(string propName) {
-    for (int i = 0; i < propertiesSize; i++) {
+    for (size_t i = 0; i < propertiesSize; i++) {
         if (propName.compare(properties[i]->pName) == 0) {
             return properties[i];
         }
@@ -38,7 +38,7 @@ Property* Table::getProperty(string propName) {
 }
 
 Table::~Table() {
-    for (int i = 0; i < propertiesSize; i++) {
+	for (size_t i = 0; i < propertiesSize; i++) {
         delete properties[i];
     }
     delete[] properties;

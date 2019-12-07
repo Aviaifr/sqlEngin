@@ -78,17 +78,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ConditionValidator.h" />
+    <ClInclude Include="FieldListValidator.h" />
+    <ClInclude Include="FieldValidator.h" />
     <ClInclude Include="IntValidator.h" />
+    <ClInclude Include="Property.h" />
+    <ClInclude Include="QueryValidator.h" />
+    <ClInclude Include="Scheme.h" />
+    <ClInclude Include="Table.h" />
+    <ClInclude Include="TableListValidator.h" />
     <ClInclude Include="Validator.h" />
     <ClInclude Include="OperatorValidator.h" />
     <ClInclude Include="StringLiteralValidator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ConditionValidator.cpp" />
+    <ClCompile Include="FieldListValidator.cpp" />
+    <ClCompile Include="FieldValidator.cpp" />
     <ClCompile Include="IntValidator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OperatorValidator.cpp" />
+    <ClCompile Include="QueryValidator.cpp" />
+    <ClCompile Include="scheme.cpp" />
     <ClCompile Include="StringLiteralValidator.cpp" />
+    <ClCompile Include="Table.cpp" />
+    <ClCompile Include="TableListValidator.cpp" />
     <ClCompile Include="Validator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="queries.txt" />
+    <Text Include="scheme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

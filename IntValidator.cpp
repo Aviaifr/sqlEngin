@@ -5,7 +5,6 @@ bool IntValidator::isDigit(char digit) {
 }
 
 bool IntValidator::isNumeric(string value) {
-    trim(value);
     if (value.length() == 0) {
         return true;
     }
@@ -16,7 +15,14 @@ bool IntValidator::isNumeric(string value) {
 
     return res && isNumeric(value.substr(1));
 }
+bool IntValidator::isSignedNumeric(string value){
+	return (value.at(0) == '-' || value.at(0) == '+') && isNumeric(value.substr(1));
+}
 
 bool IntValidator::validate(string value) {
-    return isNumeric(value);
+	trim(value);
+	if (value.length() == 0) {
+		return false;
+	}
+    return isNumeric(value) || isSignedNumeric(value);
 }

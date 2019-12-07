@@ -7,14 +7,17 @@
 
 using namespace std;
 
-int printMenu() {
+char printMenu() {
     string op;
     cout << "Please select from the following options:" << endl;
     cout << "1 => Enter filename for file containig query per line (# will ignore line)" << endl;
     cout << "2 => Write your query" << endl;
-    cout << "3 => Exit" << endl;
+    cout << "q => Exit" << endl;
     getline(cin, op);
-    return stoi(op);
+	if (op.size() == 0){
+		op = 'a';
+	}
+    return op.at(0);
 }
 
 bool validateQuery(string queryString) {
@@ -56,22 +59,22 @@ void validateQueryFromFile(string fileName) {
 }
 
 int main(int argc, char* argv[]) {
-    int selection;
+    char selection;
     do {
         selection = printMenu();
         string str;
-        if (selection == 1) {
+        if (selection == '1') {
             cout << "Enter Filename" << endl
                  << ">";
             getline(cin, str);
             validateQueryFromFile(str);
-        } else if (selection == 2) {
+        } else if (selection == '2') {
             cout << "Enter query" << endl
                  << ">";
             getline(cin, str);
             validateQuery(str);
         }
-    } while (selection != 3);
+    } while (selection != 'q');
 
     return 0;
 }

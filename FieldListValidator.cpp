@@ -17,7 +17,6 @@ bool FieldListValidator::isField(string str) {
 bool FieldListValidator::isFieldList(string str) {
     trim(str);
     size_t commaLoc;
-    bool isfieldExist;
     string field;
     if ((commaLoc = str.find(",")) == string::npos) {
         return isField(str);
